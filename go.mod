@@ -1,4 +1,4 @@
-module gitlab.maiv.biz/exprowhite/test-task/proxy
+module test.task/backend/proxy
 
 go 1.14
 

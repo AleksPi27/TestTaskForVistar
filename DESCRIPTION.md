@@ -1,6 +1,6 @@
-# Overview 
+# Description 
 
-You need to implement Proxy server as described below
+You need to implement Proxy Server component as described below
 
 ## Workflow
 
@@ -12,10 +12,10 @@ You need to implement Proxy server as described below
 +----------+                          +----------------+                           +-----------------+
 ```
 
-A Client connects to the proxy-server, the proxy-server creates a ws-connection per client to the order server.
-A client sends open/close order requests asynchronously.
-Proxy-server filters open/close order requests according to the business logic described bellow and if the filter passes the proxy-server sends the open/close order request to the order server.
-Proxy-server receives open/close order response from the order server and sends open/close order response to the client initiated the request.
+A Client connects to the proxy-server via WS, the proxy-server creates a WS-connection per client to the order server.
+A client sends order requests asynchronously.
+Proxy-server filters order requests according to the business logic described bellow and if the filter passes the proxy-server sends the order request to the order server.
+Proxy-server receives order response from the order server and sends order response to the client initiated the request.
 
 ## Business logic of proxy-server
 
@@ -25,7 +25,7 @@ The proxy-server must ensure:
 
 ## Data format
 
-## Open/Close order request format
+## order request format
 
 client_id (uint32) | id (uint32) | req_type (uint8) | order_kind (uint8) | volume (float64) | instrument (string, max len=8)
 
@@ -36,7 +36,7 @@ client_id (uint32) | id (uint32) | req_type (uint8) | order_kind (uint8) | volum
 - volume - volume of an order
 - instrument - buy/sell order instrument, e.g., XLMEUR, USDEUR, USDRUB
 
-## Open/Close order response format
+## order response format
 
 id (uint32) | code (uint16)
 
@@ -52,8 +52,8 @@ id (uint32) | code (uint16)
 ## Contents of this directory
 
 - protocol.go - OrderRequest, OrderResponse structs and codecs.
-- cmd/server/main.go - server cli. It stats server, and send responses with 0 result code on each request.
-- cmd/client/main.go - client cli sending request to the server with a certain interval between two consequent requests.
+- cmd/server/main.go - server cli. It stats server, and send responses with 0 result code on each request. You can run it in a terminal with command `go run cmd/server/main.go`
+- cmd/client/main.go - client cli sending request to the server with a certain interval between two consequent requests. You can run it in a terminal with command `go run cmd/client/main.go -inst XLMEUR -inter 0.5ms`
 
 ## What expected to get as a result
 

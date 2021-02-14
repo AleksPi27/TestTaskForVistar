@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/websocket"
-	proxy "gitlab.maiv.biz/exprowhite/test-task/proxy"
+	proxy "test.task/backend/proxy"
 )
 
 var (
