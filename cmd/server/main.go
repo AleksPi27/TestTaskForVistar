@@ -17,8 +17,8 @@ var (
 func main() {
 	flag.Parse()
 	log.SetFlags(0)
-	http.HandleFunc("/connect", connect)
-	log.Printf("Waiting for connections on %s/connect", *addr)
+	http.HandleFunc("/connectToServer", connect)
+	log.Printf("Waiting for connections on %s/connectToServer", *addr)
 	log.Fatal(http.ListenAndServe(*addr, nil))
 }
 
@@ -48,6 +48,6 @@ func connect(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 
-		log.Printf("sent: %v", req)
+		log.Printf("sent: %v", res)
 	}
 }
