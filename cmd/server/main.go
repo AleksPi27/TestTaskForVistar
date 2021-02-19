@@ -17,8 +17,8 @@ var (
 func main() {
 	flag.Parse()
 	log.SetFlags(0)
-	http.HandleFunc("/connectToServer", connect)
-	log.Printf("Waiting for connections on %s/connectToServer", *addr)
+	http.HandleFunc("/sendPassedRequestToServer", connect)
+	log.Printf("Waiting for connections on %s/sendPassedRequestToServer", *addr)
 	log.Fatal(http.ListenAndServe(*addr, nil))
 }
 
@@ -42,6 +42,7 @@ func connect(w http.ResponseWriter, r *http.Request) {
 			ID:   req.ID,
 			Code: 0,
 		}
+
 		err = c.WriteMessage(mt, proxy.EncodeOrderResponse(res))
 		if err != nil {
 			log.Println("write:", err)
