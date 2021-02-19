@@ -126,7 +126,7 @@ func checkOpenedOrders(req proxy.OrderRequest, connection websocket.Conn) uint16
 			} else {
 				if openedOrderByClient.numberOfOpenedOrdersPerInstrument >= N {
 					log.Printf("openedOrderByClient.numberOfOpenedOrdersPerInstrument is more than N, exactly is: %v", openedOrderByClient.numberOfOpenedOrdersPerInstrument)
-					//return 1
+					return 1
 				}
 				if openedOrderByClient.volume+req.Volume > S {
 					log.Printf("openedOrderByClient.volume is more than S, exactly is: %v", openedOrderByClient.volume+req.Volume)
